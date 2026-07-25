@@ -26,6 +26,7 @@ jobs:
       uses: hashicorp/setup-terraform@v3
       with:
         terraform_version: "1.13.4"
+        terraform_wrapper: false # отключение зависания логов
 
     - name: Terraform Init
       run: terraform init
