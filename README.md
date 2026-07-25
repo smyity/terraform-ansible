@@ -38,11 +38,13 @@
     git clone https://github.com/smyity/terraform-ansible.git
     ```
     ❗ Для данного способа обязательно нужно задать переменные окружения в терминале:
-    - `export AWS_ACCESS_KEY_ID="<<access_key>>"` - access_key
-    - `export AWS_SECRET_ACCESS_KEY="<<secret_key>>"` - secret_key
+    - `export AWS_ACCESS_KEY_ID="<<access_key>>"`            - access_key
+    - `export AWS_SECRET_ACCESS_KEY="<<secret_key>>"`        - secret_key
+    - `export clickhouse_username="<<clickhouse_username>>"` - имя пользователя ClickHouse
+    - `export clickhouse_password="<<clickhouse_password>>"` - пароль для пользователя ClickHouse
     <br>
     </br>
-    
+
     - В файле *main.tf* раскомментировать строку `service_account_key_file` в `provider "yandex"`
 
     После перехода в директорию проекта выполнить инициализацию:

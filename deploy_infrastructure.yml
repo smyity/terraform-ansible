@@ -112,8 +112,8 @@
       ansible.builtin.copy:
         content: |
           server_ip={{ host_public_ip.content | trim }}
-          clickhouse_username={{ lookup('env', 'CH_USERNAME') }}
-          clickhouse_password={{ lookup('env', 'CH_PASSWORD') }}
+          clickhouse_username={{ lookup('env', 'clickhouse_username') }}
+          clickhouse_password={{ lookup('env', 'clickhouse_password') }}
         dest: /opt/application/.env
         force: yes
         mode: '0600'
