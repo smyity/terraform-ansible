@@ -1,0 +1,52 @@
+name: Terraform State Control
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'necessary_state.txt' # триггер
+
+jobs:
+  terraform:
+    runs-on: ubuntu-latest
+
+    env:
+      AWS_ACCESS_KEY_ID: ${{ secrets.A_KEY }}
+      AWS_SECRET_ACCESS_KEY: ${{ secrets.S_KEY }}
+      clickhouse_username: ${{ secrets.CH_USER }}
+      clickhouse_password: ${{ secrets.CH_PASS }}
+
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v4
+
+    - name: Setup Terraform
+      uses: hashicorp/setup-terraform@v3
+      with:
+        terraform_version: "1.13.4"
+
+    - name: Terraform Init
+      run: terraform init
+
+    - name: Read Necessary State
+      id: check_state
+      run: |
+        # удаление пробелов и перевод в нижний регистр
+        STATE=$(cat necessary_state.txt | tr -d '[:space:]' | tr '[:upper:]' '[:lower:]')
+        echo "Существование ВМ: $STATE"
+        echo "state=$STATE" >> $GITHUB_OUTPUT
+
+    - name: Создание ВМ (yes)
+      if: steps.check_state.outputs.state == 'yes'
+      run: terraform apply -auto-approve
+
+    - name: Удаление ВМ (no)
+      if: steps.check_state.outputs.state == 'no'
+      run: terraform destroy -auto-approve
+
+    - name: Handle Invalid State
+      if: steps.check_state.outputs.state != 'yes' && steps.check_state.outputs.state != 'no'
+      run: |
+        echo "[!] Запись в файле necessary_state.txt должна быть либо 'yes', либо 'no'."
+        exit 1
