@@ -8,12 +8,12 @@ terraform {
 }
 
 provider "yandex" {
-  cloud_id                 = var.cloud_id
-  folder_id                = var.folder_id
+  cloud_id                    = var.cloud_id
+  folder_id                   = var.folder_id
   # для передачи текста напрямую
-  service_account_key_raw  = var.yc_json
+  service_account_key_content = var.yc_json
   # для передачи файла
-  # service_account_key_file = file("~/.authorized_key.json")
+  # service_account_key_file  = file("~/.authorized_key.json")
 }
 
 
