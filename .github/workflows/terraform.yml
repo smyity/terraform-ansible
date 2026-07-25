@@ -16,8 +16,7 @@ jobs:
       AWS_SECRET_ACCESS_KEY: ${{ secrets.S_KEY }}
       clickhouse_username: ${{ secrets.CH_USER }}
       clickhouse_password: ${{ secrets.CH_PASS }}
-      TF_VAR_yc_json: ${{ secrets.A_1 }}
-      # префикс TF_VAR связывает секрет с переменной yc_json в global_variables.tf
+      YC_SERVICE_ACCOUNT_KEY_FILE: ${{ secrets.A_1 }}
 
     steps:
     - name: Checkout Code
