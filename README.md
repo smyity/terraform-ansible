@@ -27,6 +27,7 @@
     - `CH_USER` - имя пользователя для ClickHouse
     - `CH_PASS` - пароль пользователя для ClickHouse
     - `A_1`     - содержимое файла authorized_key
+    - `SSH_KEY` - приватный SSH ключ
 
     При таком способе выполняя команду `git push origin`, в зависимости от желаемого состояния будут запускаться pipeline.
 
@@ -39,6 +40,9 @@
     ❗ Для данного способа обязательно нужно задать переменные окружения в терминале:
     - `export AWS_ACCESS_KEY_ID="<<access_key>>"` - access_key
     - `export AWS_SECRET_ACCESS_KEY="<<secret_key>>"` - secret_key
+    <br>
+    <br>
+    - В файле *main.tf* раскомментировать строку `service_account_key_file` в `provider "yandex"`
 
     После перехода в директорию проекта выполнить инициализацию:
     ```
