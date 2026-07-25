@@ -22,10 +22,11 @@
     - `no` - для удаления ВМ
 
     ❗ Для данного способа обязательно нужно создать секреты (если делается fork): **Settings** → **Secrets and variables** → **Actions** → **New repository secret**:
-    - `A_KEY` - access_key статического ключа
-    - `S_KEY` - secret_key статического ключа
+    - `A_KEY`   - access_key статического ключа
+    - `S_KEY`   - secret_key статического ключа
     - `CH_USER` - имя пользователя для ClickHouse
     - `CH_PASS` - пароль пользователя для ClickHouse
+    - `A_1`     - содержимое файла authorized_key
 
     При таком способе выполняя команду `git push origin`, в зависимости от желаемого состояния будут запускаться pipeline.
 

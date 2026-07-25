@@ -10,7 +10,10 @@ terraform {
 provider "yandex" {
   cloud_id                 = var.cloud_id
   folder_id                = var.folder_id
-  service_account_key_file = file("~/.authorized_key.json")
+  # для передачи текста напрямую
+  service_account_key_raw  = var.yc_json
+  # для передачи файла
+  # service_account_key_file = file("~/.authorized_key.json")
 }
 
 

@@ -21,3 +21,4 @@ variable "stoppable_vm" { type = bool }
 variable "username" { type = string }
 variable "path_ssh_key" { type = string }
 variable "ssh_public_key" { type = string }
+variable "yc_json" { type = string }
