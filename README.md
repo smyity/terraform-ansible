@@ -2,7 +2,7 @@
 
 Что здесь происходит:
 1. Создание ВМ в Yandex Cloud
-2. Запуск ansible playbook
+2. Запуск **ansible playbook**
     - Установка Docker
     - Клонирование репозитория [приложения](https://github.com/smyity/application.git)
     - Запуск compose.yml
@@ -41,7 +41,8 @@
     - `export AWS_ACCESS_KEY_ID="<<access_key>>"` - access_key
     - `export AWS_SECRET_ACCESS_KEY="<<secret_key>>"` - secret_key
     <br>
-    <br>
+    </br>
+    
     - В файле *main.tf* раскомментировать строку `service_account_key_file` в `provider "yandex"`
 
     После перехода в директорию проекта выполнить инициализацию:
