@@ -1,11 +1,11 @@
-name: Terraform State Control
+name: Создание и удаление ВМ по записи в файле necessary_state.txt
 
 on:
   push:
     branches:
       - main
     paths:
-      - 'necessary_state.txt' # триггер
+      - 'necessary_state.txt' # триггер запуска pipeline
 
 jobs:
   terraform:
@@ -19,19 +19,19 @@ jobs:
       YC_SERVICE_ACCOUNT_KEY_FILE: ${{ secrets.A_1 }}
 
     steps:
-    - name: Checkout Code
+    - name: Загрузка кода репозитория в рабочую директорию виртуальной машины
       uses: actions/checkout@v4
 
-    - name: Setup Terraform
+    - name: Настройка Terraform
       uses: hashicorp/setup-terraform@v3
       with:
         terraform_version: "1.13.4"
         terraform_wrapper: false # отключение зависания логов
 
-    - name: Terraform Init
+    - name: Инициализация Terraform (аналог "terraform init" на машине)
       run: terraform init
 
-    - name: Read Necessary State
+    - name: Чтение файла necessary_state.txt для получения желаемого состояноя ВМ
       id: check_state
       run: |
         # удаление пробелов и перевод в нижний регистр
@@ -53,7 +53,7 @@ jobs:
       if: steps.check_state.outputs.state == 'no'
       run: terraform destroy -auto-approve
 
-    - name: Handle Invalid State
+    - name: Неверная запись в файле necessary_state.txt
       if: steps.check_state.outputs.state != 'yes' && steps.check_state.outputs.state != 'no'
       run: |
         echo "[!] Запись в файле necessary_state.txt должна быть либо 'yes', либо 'no'."

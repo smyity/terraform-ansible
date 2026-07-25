@@ -5,7 +5,7 @@
 2. Запуск **ansible playbook**
     - Установка Docker
     - Клонирование репозитория [приложения](https://github.com/smyity/application.git)
-    - Запуск compose.yml
+    - Запуск *compose.yml*
 
 ## Как это работает
 
@@ -36,6 +36,8 @@
     |`SSH_KEY` | приватный SSH ключ |
 
     При таком способе выполняя команду `git push origin`, в зависимости от желаемого состояния будут запускаться pipeline.
+<br>
+</br>
 
 2. **Локально**.
 
