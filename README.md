@@ -17,7 +17,7 @@
 
 1. **Через GitHub**.
 
-    В данном репозитории есть специальный файл для указания нужного состояния ВМ - *necessary_state.txt*. В нем может быть написано:
+    В данном репозитории есть специальный файл для указания нужного состояния ВМ - [*necessary_state.txt*](./necessary_state.txt). В нем может быть написано:
 
     | Состояние | Результат |
     | :-- | :-- |
@@ -50,6 +50,8 @@
     - `export AWS_SECRET_ACCESS_KEY="<<secret_key>>"`        - secret_key
     - `export clickhouse_username="<<clickhouse_username>>"` - имя пользователя ClickHouse
     - `export clickhouse_password="<<clickhouse_password>>"` - пароль для пользователя ClickHouse
+
+        *\*При условии, что авторизованный ключ расположен по пути ~/.authorized_key.json и ssh-ключ расположен в директории ~/.ssh/*
     <br>
     </br>
 
