@@ -118,15 +118,9 @@
         force: yes
         mode: '0600'
 
-    # - name: 15.1 Изменение переменной ip адреса в .env файле
-    #   ansible.builtin.lineinfile:
-    #     path: /opt/application/.env
-    #     regexp: '^server_ip='
-    #     line: "server_ip={{ host_public_ip.content | trim }}"
-    #     state: present
-
     - name: 16. Запуск Docker Compose проекта
       community.docker.docker_compose_v2:
         project_src: /opt/application         # путь до compose.yml
         state: present
         pull: always                          # скачивать новые образы, если они обновились
+        build: always
